@@ -1,0 +1,4 @@
+name: DatabaseAPI
+version: '${version}'
+main: com.ulxsth.databaseapi.DatabaseAPI
+api-version: 1.19
