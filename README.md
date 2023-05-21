@@ -1,0 +1,2 @@
+# EftLikeMinecraft
+EfTライクな生活鯖あったらおもろいやんね
