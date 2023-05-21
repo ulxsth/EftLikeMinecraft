@@ -1,0 +1,4 @@
+name: DBManager
+version: '${version}'
+main: com.ulxsth.dbmanager.DBManager
+api-version: 1.19
