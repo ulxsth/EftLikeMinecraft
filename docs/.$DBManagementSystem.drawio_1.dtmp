@@ -1,4 +1,4 @@
-<mxfile host="Electron" modified="2023-05-22T01:25:36.553Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/21.2.8 Chrome/112.0.5615.165 Electron/24.2.0 Safari/537.36" etag="eBaMXuVnerAdMiv2GC8Z" version="21.2.8" type="device">
+<mxfile host="Electron" modified="2023-05-22T02:19:27.801Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/21.2.8 Chrome/112.0.5615.165 Electron/24.2.0 Safari/537.36" etag="hYO6quzGULfVjXjQM2wP" version="21.2.8" type="device" pages="2">
   <diagram name="全体図" id="u-k_7LdsT-tdpCUKIp5C">
     <mxGraphModel dx="1276" dy="614" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
@@ -77,6 +77,14 @@
         <mxCell id="Xgt6j_jNgQ456dZlXn3z-36" value="&lt;ol&gt;&lt;li&gt;他プラグイン内でDTOオブジェクトを作成する&lt;/li&gt;&lt;li&gt;対応するDAOオブジェクトを作成&lt;/li&gt;&lt;li&gt;DAOのメソッドにDTOオブジェクトを渡す&lt;/li&gt;&lt;li&gt;DAOを介してデータベースの応答結果が返ってくる&lt;/li&gt;&lt;/ol&gt;" style="text;strokeColor=none;fillColor=none;html=1;whiteSpace=wrap;verticalAlign=middle;overflow=hidden;" vertex="1" parent="1">
           <mxGeometry x="740" y="40" width="420" height="80" as="geometry" />
         </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+  <diagram id="Cf8POOC204xPDX63I4cR" name="ページ2">
+    <mxGraphModel dx="1276" dy="614" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
       </root>
     </mxGraphModel>
   </diagram>
