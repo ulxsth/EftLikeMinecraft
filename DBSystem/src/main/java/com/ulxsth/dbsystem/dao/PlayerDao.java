@@ -3,10 +3,8 @@ package com.ulxsth.dbsystem.dao;
 import com.ulxsth.dbsystem.DBSystem;
 import com.ulxsth.dbsystem.dto.PlayerDto;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
+import java.util.Date;
 import java.util.UUID;
 
 public class PlayerDao {
@@ -14,11 +12,10 @@ public class PlayerDao {
 
     public static final String PATH = "jdbc:sqlite:" + plugin.getDataFolder() + "\\data.db";
     public static final String TABLE_NAME = "players";
-    private Connection connection;
 
     PlayerDao() {
         try {
-            this.connection = DriverManager.getConnection(PATH);
+            Connection connection = DriverManager.getConnection(PATH);
             Statement statement = connection.createStatement();
 
             // dbの作成
@@ -35,7 +32,32 @@ public class PlayerDao {
         }
     }
 
-    public void insert(PlayerDto playerDto) throws SQLException {}
+    public void insert(PlayerDto playerDto) throws SQLException {
+        try {
+            Connection connection = DriverManager.getConnection(PATH);
+            UUID uniqueId = playerDto.uniqueId();
+            String name = playerDto.name();
+            Date firstLoggedIn = playerDto.firstLoggedIn();
+            Date recentlyLoggedIn = playerDto.recentlyLoggedIn();
+
+            String sql = "INSERT INTO "
+                    + TABLE_NAME
+                    + "(unique_id, name, first_logged_in, recently_logged_in) "
+                    + "VALUES(?, ?, ?, ?)";
+            PreparedStatement ps = connection.prepareStatement(sql);
+            ps.setString(1, uniqueId.toString());
+            ps.setString(2, name);
+            ps.setDate(3, new java.sql.Date(firstLoggedIn.getTime()));
+            ps.setDate(4, new java.sql.Date(recentlyLoggedIn.getTime()));
+            ps.executeUpdate();
+
+            plugin.getLogger().info("Initialized data: $userName(uuid: $userUUID)")
+            connection.close();
+        } catch(SQLException err) {
+            err.printStackTrace();
+        }
+    }
+
     public PlayerDto selectByUniqueId(UUID uniqueId) throws SQLException {}
     public void update(PlayerDto playerDto) throws SQLException {}
     public void upsert(PlayerDto playerDto) throws SQLException {}
