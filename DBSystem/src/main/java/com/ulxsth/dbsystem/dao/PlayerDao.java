@@ -51,7 +51,7 @@ public class PlayerDao {
             ps.setDate(4, new java.sql.Date(recentlyLoggedIn.getTime()));
             ps.executeUpdate();
 
-            plugin.getLogger().info("Initialized data: $userName(uuid: $userUUID)")
+            plugin.getLogger().info("Initialized data: $userName(uuid: $userUUID)");
             connection.close();
         } catch(SQLException err) {
             err.printStackTrace();
@@ -69,6 +69,9 @@ public class PlayerDao {
 
             ResultSet result = ps.executeQuery();
             result.next();
+            if(result.wasNull()) {
+                return null;
+            }
             UUID uuid = UUID.fromString(result.getString(1));
             String name = result.getString(2);
             Date firstLoggedIn = result.getDate(3);
@@ -78,13 +81,70 @@ public class PlayerDao {
         } catch(SQLException err) {
             err.printStackTrace();
         }
-        
+
         return dto;
     }
 
-    public void update(PlayerDto playerDto) throws SQLException {}
+    public void update(PlayerDto playerDto) throws SQLException {
+        try {
+            Connection connection = DriverManager.getConnection(PATH);
+            UUID uniqueId = playerDto.uniqueId();
+            String name = playerDto.name();
+            Date firstLoggedIn = playerDto.firstLoggedIn();
+            Date recentlyLoggedIn = playerDto.recentlyLoggedIn();
 
-    public void upsert(PlayerDto playerDto) throws SQLException {}
+            String sql = "UPDATE " + TABLE_NAME
+                    + "SET name = ?,"
+                    + "first_logged_in = ?,"
+                    + "recently_logged_in = ?"
+                    + "WHERE uuid = ?";
+            PreparedStatement ps = connection.prepareStatement(sql);
+            ps.setString(1, name);
+            ps.setDate(2, new java.sql.Date(firstLoggedIn.getTime()));
+            ps.setDate(3, new java.sql.Date(recentlyLoggedIn.getTime()));
+            ps.setString(4, uniqueId.toString());
+            ps.executeUpdate();
 
-    public void delete(UUID uniqueId) throws SQLException {}
+            connection.close();
+        } catch(SQLException err) {
+            err.printStackTrace();
+        }
+    }
+
+    public void upsert(PlayerDto playerDto) throws SQLException {
+        try {
+            Connection connection = DriverManager.getConnection(PATH);
+            UUID uniqueId = playerDto.uniqueId();
+            String name = playerDto.name();
+            Date firstLoggedIn = playerDto.firstLoggedIn();
+            Date recentlyLoggedIn = playerDto.recentlyLoggedIn();
+
+            String sql = "REPLACE INTO " + TABLE_NAME + " VALUES(?, ?, ?, ?);";
+            PreparedStatement ps = connection.prepareStatement(sql);
+            ps.setString(4, uniqueId.toString());
+            ps.setString(1, name);
+            ps.setDate(2, new java.sql.Date(firstLoggedIn.getTime()));
+            ps.setDate(3, new java.sql.Date(recentlyLoggedIn.getTime()));
+            ps.executeUpdate();
+
+            connection.close();
+        } catch(SQLException err) {
+            err.printStackTrace();
+        }
+    }
+
+    public void delete(UUID uniqueId) throws SQLException {
+        Connection connection = DriverManager.getConnection(PATH);;
+        try {
+            String sql = "DELETE FROM " + TABLE_NAME + "WHERE unique_id = ?";
+            PreparedStatement ps = connection.prepareStatement(sql);
+            ps.setString(1, uniqueId.toString());
+            ps.executeUpdate();
+            connection.close();
+        } catch(SQLException err) {
+            err.printStackTrace();
+        } finally {
+            connection.close();
+        }
+    }
 }
