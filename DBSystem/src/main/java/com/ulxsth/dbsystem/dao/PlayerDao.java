@@ -58,8 +58,33 @@ public class PlayerDao {
         }
     }
 
-    public PlayerDto selectByUniqueId(UUID uniqueId) throws SQLException {}
+    public PlayerDto selectByUniqueId(UUID uniqueId) throws SQLException {
+        PlayerDto dto = null;
+
+        try {
+            Connection connection = DriverManager.getConnection(PATH);
+            String sql = "SELECT * FROM " + TABLE_NAME + " WHERE unique_id = ?";
+            PreparedStatement ps = connection.prepareStatement(sql);
+            ps.setString(1, uniqueId.toString());
+
+            ResultSet result = ps.executeQuery();
+            result.next();
+            UUID uuid = UUID.fromString(result.getString(1));
+            String name = result.getString(2);
+            Date firstLoggedIn = result.getDate(3);
+            Date recentlyLoggedIn = result.getDate(4);
+
+            dto = new PlayerDto(uuid, name, firstLoggedIn, recentlyLoggedIn);
+        } catch(SQLException err) {
+            err.printStackTrace();
+        }
+        
+        return dto;
+    }
+
     public void update(PlayerDto playerDto) throws SQLException {}
+
     public void upsert(PlayerDto playerDto) throws SQLException {}
+
     public void delete(UUID uniqueId) throws SQLException {}
 }
