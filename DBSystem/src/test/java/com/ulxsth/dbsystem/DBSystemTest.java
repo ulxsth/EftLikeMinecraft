@@ -1,2 +1,4 @@
-package com.ulxsth.dbsystem;public class DBSystemTest {
+package com.ulxsth.dbsystem;
+
+public class DBSystemTest {
 }
