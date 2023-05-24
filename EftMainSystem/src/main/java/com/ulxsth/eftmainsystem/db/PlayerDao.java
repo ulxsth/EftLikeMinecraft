@@ -14,7 +14,7 @@ public class PlayerDao {
     public static final String PATH = DbConstants.DB_PATH;
     public static final String TABLE_NAME = "players";
 
-    PlayerDao() throws SQLException {
+    public PlayerDao() throws SQLException {
         Connection connection = DriverManager.getConnection(PATH);
         Statement statement = null;
         try {
