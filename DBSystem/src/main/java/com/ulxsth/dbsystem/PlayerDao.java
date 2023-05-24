@@ -1,7 +1,7 @@
-package com.ulxsth.dbsystem.dao;
+package com.ulxsth.dbsystem;
 
 import com.ulxsth.dbsystem.DBSystem;
-import com.ulxsth.dbsystem.dto.PlayerDto;
+import com.ulxsth.dbsystem.PlayerDto;
 
 import java.sql.*;
 import java.util.Date;
