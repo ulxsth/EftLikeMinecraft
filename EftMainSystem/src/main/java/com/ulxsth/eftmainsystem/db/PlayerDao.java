@@ -2,7 +2,6 @@ package com.ulxsth.eftmainsystem.db;
 
 import com.ulxsth.eftmainsystem.EftMainSystem;
 import com.ulxsth.eftmainsystem.constants.DbConstants;
-import com.ulxsth.eftmainsystem.db.PlayerDto;
 
 import java.sql.*;
 import java.util.Date;
@@ -72,6 +71,7 @@ public class PlayerDao {
     public PlayerDto selectByUniqueId(UUID uniqueId) throws SQLException {
         Connection connection = DriverManager.getConnection(PATH);
         PreparedStatement ps = null;
+        ResultSet result = null;
         PlayerDto dto = null;
 
         try {
@@ -79,7 +79,7 @@ public class PlayerDao {
             ps = connection.prepareStatement(sql);
             ps.setString(1, uniqueId.toString());
 
-            ResultSet result = ps.executeQuery();
+            result = ps.executeQuery();
             result.next();
             UUID uuid = UUID.fromString(result.getString(1));
             String name = result.getString(2);
@@ -94,6 +94,7 @@ public class PlayerDao {
             err.printStackTrace();
 
         } finally {
+            if(result != null) result.close();
             if (ps != null) ps.close();
             connection.close();
         }
