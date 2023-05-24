@@ -1,4 +1,4 @@
-package com.ulxsth.dbsystem.dto;
+package com.ulxsth.dbsystem;
 
 import java.util.Date;
 import java.util.UUID;
