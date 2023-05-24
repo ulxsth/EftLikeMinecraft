@@ -6,12 +6,6 @@ public final class EftMainSystem extends JavaPlugin {
 
     @Override
     public void onEnable() {
-        // Plugin startup logic
-
-    }
-
-    @Override
-    public void onDisable() {
-        // Plugin shutdown logic
+        this.getServer().getPluginManager().registerEvents(new EventListener(), this);
     }
 }
