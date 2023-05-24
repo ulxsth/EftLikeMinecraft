@@ -1,1 +1,3 @@
 .idea
+DBSystem\build\*
+DBSystem\.gradle\*
