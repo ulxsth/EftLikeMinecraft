@@ -1,4 +1,5 @@
 plugins {
+    id 'com.github.johnrengelman.shadow' version '8.1.1'
     id 'java'
 }
 
@@ -16,6 +17,10 @@ repositories {
         url = "https://oss.sonatype.org/content/groups/public/"
     }
 }
+
+def defaultEncoding = 'UTF-8'
+tasks.withType(AbstractCompile)*.options*.encoding = defaultEncoding
+tasks.withType(GroovyCompile)*.groovyOptions*.encoding = defaultEncoding
 
 dependencies {
     compileOnly "org.spigotmc:spigot-api:1.19.3-R0.1-SNAPSHOT"
@@ -43,5 +48,11 @@ processResources {
     filteringCharset 'UTF-8'
     filesMatching('plugin.yml') {
         expand props
+    }
+}
+
+jar {
+    manifest {
+        attributes "Main-Class" : "com.ulxsth.eftmainsystem.EftMainSystem"
     }
 }
