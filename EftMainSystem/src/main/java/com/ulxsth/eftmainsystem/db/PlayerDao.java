@@ -179,4 +179,16 @@ public class PlayerDao {
             connection.close();
         }
     }
+
+    public boolean isExist(UUID uniqueId) {
+        PlayerDto result = null;
+
+        try {
+            result = selectByUniqueId(uniqueId);
+        } catch (SQLException err) {
+            err.printStackTrace();
+        }
+
+        return result != null;
+    }
 }
