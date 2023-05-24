@@ -1,5 +1,6 @@
 package com.ulxsth.eftmainsystem;
 
+import com.ulxsth.eftmainsystem.db.PlayerDao;
 import com.ulxsth.eftmainsystem.db.PlayerDto;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -14,6 +15,6 @@ public class EventListener implements Listener {
         Player player = event.getPlayer();
         UUID uniqueId = player.getUniqueId();
 
-        // TODO: dbに存在しないプレイヤーを登録
+        if()
     }
 }

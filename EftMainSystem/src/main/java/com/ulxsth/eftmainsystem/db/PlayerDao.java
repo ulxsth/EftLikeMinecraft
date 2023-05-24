@@ -14,10 +14,11 @@ public class PlayerDao {
     public static final String PATH = DbConstants.DB_PATH;
     public static final String TABLE_NAME = "players";
 
-    PlayerDao() throws SQLException {
-        Connection connection = DriverManager.getConnection(PATH);
+    PlayerDao() {
+        Connection connection = null;
         Statement statement = null;
         try {
+            connection = DriverManager.getConnection(PATH);
             statement = connection.createStatement();
 
             // dbの作成
