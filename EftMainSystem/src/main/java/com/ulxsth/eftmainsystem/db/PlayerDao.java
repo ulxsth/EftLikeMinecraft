@@ -80,15 +80,14 @@ public class PlayerDao {
             ps.setString(1, uniqueId.toString());
 
             result = ps.executeQuery();
-            result.next();
-            UUID uuid = UUID.fromString(result.getString(1));
-            String name = result.getString(2);
-            Date firstLoggedIn = result.getDate(3);
-            Date recentlyLoggedIn = result.getDate(4);
-            if (result.wasNull()) {
-                return null;
+            while(result.next()) {
+                UUID uuid = UUID.fromString(result.getString(1));
+                String name = result.getString(2);
+                Date firstLoggedIn = result.getDate(3);
+                Date recentlyLoggedIn = result.getDate(4);
+
+                dto = new PlayerDto(uuid, name, firstLoggedIn, recentlyLoggedIn);
             }
-            dto = new PlayerDto(uuid, name, firstLoggedIn, recentlyLoggedIn);
 
         } catch (SQLException err) {
             err.printStackTrace();
