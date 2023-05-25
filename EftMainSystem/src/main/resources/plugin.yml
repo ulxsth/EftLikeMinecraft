@@ -2,3 +2,7 @@ name: EftMainSystem
 version: '${version}'
 main: com.ulxsth.eftmainsystem.EftMainSystem
 api-version: 1.19
+commands:
+  record:
+    aliases: [record]
+    description: "これまでのデータを確認します"

@@ -1,5 +1,6 @@
 package com.ulxsth.eftmainsystem;
 
+import com.ulxsth.eftmainsystem.commands.RecordCommandExecutor;
 import org.bukkit.plugin.java.JavaPlugin;
 
 public final class EftMainSystem extends JavaPlugin {
@@ -15,5 +16,6 @@ public final class EftMainSystem extends JavaPlugin {
         instance = this;
 
         this.getServer().getPluginManager().registerEvents(new EventListener(), instance);
+        getCommand("record").setExecutor(new RecordCommandExecutor());
     }
 }
