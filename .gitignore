@@ -1,3 +1,8 @@
 .idea
-DBSystem\build\*
-DBSystem\.gradle\*
+EftMainSystem\build\*
+EftMainSystem\gradle\*
+EftMainSystem\.gradle\*
+
+EftEconomySystem\build\*
+EftEconomySystem\gradle\*
+EftEconomySystem\.gradle\*
