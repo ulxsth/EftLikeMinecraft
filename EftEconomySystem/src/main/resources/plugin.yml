@@ -1,0 +1,4 @@
+name: EftEconomySystem
+version: '${version}'
+main: com.ulxsth.efteconomysystem.EftEconomySystem
+api-version: 1.19
