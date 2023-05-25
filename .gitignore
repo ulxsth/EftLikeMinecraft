@@ -1,8 +1,5 @@
 .idea
-EftMainSystem\build\*
-EftMainSystem\gradle\*
-EftMainSystem\.gradle\*
+build
+gradle
+.gradle
 
-EftEconomySystem\build\*
-EftEconomySystem\gradle\*
-EftEconomySystem\.gradle\*
