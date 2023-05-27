@@ -57,7 +57,6 @@ public class PlayerDao {
             ps.setDate(3, new java.sql.Date(firstLoggedIn.getTime()));
             ps.setDate(4, new java.sql.Date(recentlyLoggedIn.getTime()));
             ps.executeUpdate();
-            plugin.getLogger().info("Initialized data: $userName(uuid: $userUUID)");
 
         } catch (SQLException err) {
             err.printStackTrace();
