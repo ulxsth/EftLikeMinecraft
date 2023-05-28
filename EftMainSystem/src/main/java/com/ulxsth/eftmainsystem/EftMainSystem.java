@@ -1,6 +1,8 @@
 package com.ulxsth.eftmainsystem;
 
+import com.ulxsth.eftmainsystem.commands.PayCommandExecutor;
 import com.ulxsth.eftmainsystem.commands.RecordCommandExecutor;
+import com.ulxsth.eftmainsystem.commands.StatsCommandExecutor;
 import org.bukkit.plugin.java.JavaPlugin;
 
 public final class EftMainSystem extends JavaPlugin {
@@ -17,5 +19,7 @@ public final class EftMainSystem extends JavaPlugin {
 
         this.getServer().getPluginManager().registerEvents(new EventListener(), instance);
         getCommand("record").setExecutor(new RecordCommandExecutor());
+        getCommand("stats").setExecutor(new StatsCommandExecutor());
+        getCommand("pay").setExecutor(new PayCommandExecutor());
     }
 }

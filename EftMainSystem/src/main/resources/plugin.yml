@@ -6,3 +6,9 @@ commands:
   record:
     aliases: [record]
     description: "これまでのデータを確認します"
+  stats:
+    aliases: [stats]
+    description: "所持金を確認します"
+  pay:
+    aliases: [pay]
+    description: "ほかのプレイヤーにお金を渡します"

@@ -1,5 +1,7 @@
 package com.ulxsth.eftmainsystem;
 
+import com.ulxsth.eftmainsystem.db.MoneyDao;
+import com.ulxsth.eftmainsystem.db.MoneyDto;
 import com.ulxsth.eftmainsystem.db.PlayerDao;
 import com.ulxsth.eftmainsystem.db.PlayerDto;
 import org.bukkit.entity.Player;
@@ -18,13 +20,15 @@ public class EventListener implements Listener {
     public void onJoin(PlayerJoinEvent event) {
 
         // DAO発行
-        PlayerDao dao = null;
+        MoneyDao moneyDao = null;
+        PlayerDao playerDao = null;
         try {
-            dao = new PlayerDao();
+            moneyDao = new MoneyDao();
+            playerDao = new PlayerDao();
         } catch (SQLException err) {
             err.printStackTrace();
         }
-        if(dao == null) {
+        if(playerDao == null) {
             plugin.getLogger().info("データベースへのアクセスに失敗しました。");
             return;
         }
@@ -34,19 +38,24 @@ public class EventListener implements Listener {
         UUID uniqueId = player.getUniqueId();
 
         // 既存プレイヤーか確認
-        if(dao.isExist(uniqueId)) return;
+        if(playerDao.isExist(uniqueId)) return;
 
         // DTO作成
-        PlayerDto dto = new PlayerDto(
+        PlayerDto playerDto = new PlayerDto(
                 uniqueId,
                 player.getName(),
                 new Date(),
                 new Date()
         );
+        MoneyDto moneyDto = new MoneyDto(
+                uniqueId,
+                0
+        );
 
         // 挿入
         try {
-            dao.insert(dto);
+            playerDao.insert(playerDto);
+            moneyDao.insert(moneyDto);
         } catch(SQLException err) {
             err.printStackTrace();
         }
