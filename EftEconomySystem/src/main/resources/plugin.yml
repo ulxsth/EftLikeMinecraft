@@ -2,3 +2,7 @@ name: EftEconomySystem
 version: '${version}'
 main: com.ulxsth.efteconomysystem.EftEconomySystem
 api-version: 1.19
+commands:
+  stats:
+    aliases: [stats]
+    description: "所持金を確認します"
