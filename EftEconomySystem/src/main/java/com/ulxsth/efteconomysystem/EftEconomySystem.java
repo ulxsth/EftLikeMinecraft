@@ -1,5 +1,6 @@
 package com.ulxsth.efteconomysystem;
 
+import com.ulxsth.efteconomysystem.commands.PayCommandExecutor;
 import com.ulxsth.efteconomysystem.commands.StatsCommandExecutor;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -16,5 +17,6 @@ public final class EftEconomySystem extends JavaPlugin {
         plugin = this;
         this.getServer().getPluginManager().registerEvents(new EventListener(), this);
         getCommand("stats").setExecutor(new StatsCommandExecutor());
+        getCommand("pay").setExecutor(new PayCommandExecutor());
     }
 }
