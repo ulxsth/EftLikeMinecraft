@@ -1,4 +1,4 @@
-package com.ulxsth.eftmainsystem.db;
+package com.ulxsth.eftmainsystem.db.dto;
 
 import java.util.UUID;
 

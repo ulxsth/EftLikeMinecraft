@@ -1,7 +1,7 @@
-package com.ulxsth.eftmainsystem.db;
+package com.ulxsth.eftmainsystem.db.dao;
 
-import com.sun.jdi.request.MonitorWaitedRequest;
 import com.ulxsth.eftmainsystem.EftMainSystem;
+import com.ulxsth.eftmainsystem.db.dto.MoneyDto;
 
 import java.sql.*;
 import java.util.UUID;

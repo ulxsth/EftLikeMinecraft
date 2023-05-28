@@ -1,7 +1,7 @@
 package com.ulxsth.eftmainsystem.commands;
 
-import com.ulxsth.eftmainsystem.db.PlayerDao;
-import com.ulxsth.eftmainsystem.db.PlayerDto;
+import com.ulxsth.eftmainsystem.db.dao.PlayerDao;
+import com.ulxsth.eftmainsystem.db.dto.PlayerDto;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;

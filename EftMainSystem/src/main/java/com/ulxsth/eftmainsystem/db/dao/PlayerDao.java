@@ -1,7 +1,8 @@
-package com.ulxsth.eftmainsystem.db;
+package com.ulxsth.eftmainsystem.db.dao;
 
 import com.ulxsth.eftmainsystem.EftMainSystem;
 import com.ulxsth.eftmainsystem.constants.DbConstants;
+import com.ulxsth.eftmainsystem.db.dto.PlayerDto;
 
 import java.sql.*;
 import java.util.Date;
