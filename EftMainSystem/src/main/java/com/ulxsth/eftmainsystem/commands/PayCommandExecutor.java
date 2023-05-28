@@ -1,6 +1,7 @@
 package com.ulxsth.eftmainsystem.commands;
 
 import com.ulxsth.eftmainsystem.EftMainSystem;
+import com.ulxsth.eftmainsystem.constants.MessageConstants;
 import com.ulxsth.eftmainsystem.constants.MoneyConstants;
 import com.ulxsth.eftmainsystem.db.dao.MoneyDao;
 import com.ulxsth.eftmainsystem.db.dto.MoneyDto;
@@ -13,7 +14,7 @@ import java.sql.SQLException;
 import java.util.UUID;
 
 public class PayCommandExecutor implements CommandExecutor {
-    public static final String USAGE = "つかいかた: /pay <player> <amount>";
+    public static final String USAGE = MessageConstants.INFO + "つかいかた: /pay <player> <amount>";
     private static final EftMainSystem plugin = EftMainSystem.getInstance();
 
     @Override
@@ -34,7 +35,7 @@ public class PayCommandExecutor implements CommandExecutor {
         // 受け取り手がいない場合は弾く
         Player receiver = plugin.getServer().getPlayer(args[0]);
         if(receiver == null) {
-            sender.sendMessage("プレイヤー名を間違ってるか、プレイヤーがオフラインだよ");
+            sender.sendMessage(MessageConstants.WARN + "プレイヤー名を間違ってるか、プレイヤーがオフラインだよ");
             return true;
         }
 
@@ -43,7 +44,7 @@ public class PayCommandExecutor implements CommandExecutor {
         try {
             sendAmount = Integer.parseInt(args[1]);
         } catch(NumberFormatException err) {
-            sender.sendMessage("<amount>は整数である必要があります");
+            sender.sendMessage(MessageConstants.WARN + "<amount>は整数だよ～");
             return true;
         }
 
@@ -61,7 +62,7 @@ public class PayCommandExecutor implements CommandExecutor {
 
             // 送り手に十分な所持金がない場合ははじく
             if(sendPlayerDto.amount() < sendAmount) {
-                sender.sendMessage("財布にないお金は送れないよ！！！ばか！！！");
+                sender.sendMessage(MessageConstants.WARN + "財布にないお金は送れないよ！！！ばか！！！");
                 return true;
             }
 
@@ -72,12 +73,12 @@ public class PayCommandExecutor implements CommandExecutor {
             // 結果表示
             String sendPlayerName = sendPlayer.getName();
             String receiverName = receiver.getName();
-            sender.sendMessage(receiverName + "に " + sendAmount + MoneyConstants.CURRENCY_UNIT + "おくったよ");
-            receiver.sendMessage(sendPlayerName + "から " + sendAmount + MoneyConstants.CURRENCY_UNIT + "もらったよ");
+            sender.sendMessage(MessageConstants.INFO + receiverName + "に " + sendAmount + MoneyConstants.CURRENCY_UNIT + "おくったよ");
+            receiver.sendMessage(MessageConstants.INFO + sendPlayerName + "から " + sendAmount + MoneyConstants.CURRENCY_UNIT + "もらったよ");
 
         } catch(SQLException err) {
             err.printStackTrace();
-            sender.sendMessage("なんか処理中にエラーが発生しました。管理人をよんでね～");
+            sender.sendMessage(MessageConstants.ERROR + "なんか処理中にエラーが発生しました。管理人をよんでね～");
             return true;
         }
 

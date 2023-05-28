@@ -1,6 +1,7 @@
 package com.ulxsth.eftmainsystem.commands;
 
 import com.ulxsth.eftmainsystem.EftMainSystem;
+import com.ulxsth.eftmainsystem.constants.MessageConstants;
 import com.ulxsth.eftmainsystem.constants.MoneyConstants;
 import com.ulxsth.eftmainsystem.db.dao.MoneyDao;
 import com.ulxsth.eftmainsystem.db.dto.MoneyDto;
@@ -32,9 +33,12 @@ public class StatsCommandExecutor implements CommandExecutor {
             MoneyDao dao = new MoneyDao();
             result = dao.selectByUniqueId(uniqueId);
         } catch (SQLException err) {
+            sender.sendMessage(MessageConstants.ERROR + "なんか処理中にエラーが発生しました。管理人をよんでね～");
             err.printStackTrace();
+            return true;
         }
         if(result == null) {
+            sender.sendMessage(MessageConstants.ERROR + "なんか処理中にエラーが発生しました。管理人をよんでね～");
             throw new IllegalStateException("データベースに存在しないプレイヤーです");
         }
 
