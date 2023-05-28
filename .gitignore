@@ -1,5 +1,9 @@
+# 共通フォルダ
 .idea
 build
 gradle
 .gradle
 
+# 拡張子
+*.drawio.bkp
+*.drawio.dtmp
