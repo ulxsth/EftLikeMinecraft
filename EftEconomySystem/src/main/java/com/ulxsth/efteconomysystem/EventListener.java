@@ -15,6 +15,8 @@ public class EventListener implements Listener {
 
     @EventHandler
     public void onJoin(PlayerJoinEvent event) {
+
+        // DAO発行
         MoneyDao dao = null;
         try {
             dao = new MoneyDao();
@@ -26,18 +28,22 @@ public class EventListener implements Listener {
             return;
         }
 
+        // UUID取得
         Player player = event.getPlayer();
         UUID uniqueId = player.getUniqueId();
 
+        // DB上に存在するか確認
         if(dao.isExist(uniqueId)) {
             return;
         }
 
+        // DTO作成
         MoneyDto dto = new MoneyDto(
                 uniqueId,
                 0
         );
 
+        // DBに挿入
         try {
             dao.insert(dto);
         } catch (SQLException err) {

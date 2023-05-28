@@ -18,22 +18,27 @@ public class PayCommandExecutor implements CommandExecutor {
 
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
+
+        // コンソールは弾く
         if(!(sender instanceof Player sendPlayer)) {
             plugin.getLogger().info("コンソールから実行できません");
             return true;
         }
 
+        // 引数が足りない場合は弾く
         if(args.length != 2) {
             sender.sendMessage(USAGE);
             return true;
         }
 
+        // 受け取り手がいない場合は弾く
         Player receiver = plugin.getServer().getPlayer(args[0]);
         if(receiver == null) {
             sender.sendMessage("プレイヤー名を間違ってるか、プレイヤーがオフラインだよ");
             return true;
         }
 
+        // amountが数値でない場合は弾く
         int sendAmount;
         try {
             sendAmount = Integer.parseInt(args[1]);
@@ -43,21 +48,28 @@ public class PayCommandExecutor implements CommandExecutor {
         }
 
         try {
+            // DAO発行
             MoneyDao dao = new MoneyDao();
+
+            // UUID取得
             UUID sendPlayerUniqueId = sendPlayer.getUniqueId();
             UUID receiverUniqueId = receiver.getUniqueId();
 
+            // DTO作成
             MoneyDto sendPlayerDto = dao.selectByUniqueId(sendPlayerUniqueId);
             MoneyDto receiverDto = dao.selectByUniqueId(receiverUniqueId);
 
+            // 送り手に十分な所持金がない場合ははじく
             if(sendPlayerDto.amount() < sendAmount) {
                 sender.sendMessage("財布にないお金は送れないよ！！！ばか！！！");
                 return true;
             }
 
+            // 送金処理
             dao.update(sendPlayerDto.decAmount(sendAmount));
             dao.update(sendPlayerDto.addAmount(sendAmount));
 
+            // 結果表示
             String sendPlayerName = sendPlayer.getName();
             String receiverName = receiver.getName();
             sender.sendMessage(receiverName + "に " + sendAmount + MoneyConstants.CURRENCY_UNIT + "おくったよ");

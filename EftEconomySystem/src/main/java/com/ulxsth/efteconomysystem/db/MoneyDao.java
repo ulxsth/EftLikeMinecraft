@@ -130,6 +130,7 @@ public class MoneyDao {
             connection.close();
         }
     }
+
     public boolean isExist(UUID uniqueId) {
         MoneyDto result = null;
 

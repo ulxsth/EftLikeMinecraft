@@ -16,13 +16,17 @@ public class StatsCommandExecutor implements CommandExecutor {
 
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
+
+        // コンソールははじく
         if(args.length == 0 && !(sender instanceof Player)) {
             plugin.getLogger().info("コンソールからは実行できません");
         }
 
+        // UUID取得
         Player player = (Player) sender;
         java.util.UUID uniqueId = player.getUniqueId();
 
+        // データ取得
         MoneyDto result = null;
         try {
             MoneyDao dao = new MoneyDao();
@@ -34,6 +38,7 @@ public class StatsCommandExecutor implements CommandExecutor {
             throw new IllegalStateException("データベースに存在しないプレイヤーです");
         }
 
+        // 結果送信
         String name = player.getName();
         int amount = result.amount();
         player.sendMessage("§f[§a " + name + " §f]");

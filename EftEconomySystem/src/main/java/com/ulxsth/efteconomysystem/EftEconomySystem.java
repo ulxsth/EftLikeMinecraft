@@ -14,8 +14,13 @@ public final class EftEconomySystem extends JavaPlugin {
 
     @Override
     public void onEnable() {
+        // シングルトン初期化
         plugin = this;
+
+        // イベントリスナ登録
         this.getServer().getPluginManager().registerEvents(new EventListener(), this);
+
+        // コマンド登録
         getCommand("stats").setExecutor(new StatsCommandExecutor());
         getCommand("pay").setExecutor(new PayCommandExecutor());
     }
