@@ -2,8 +2,8 @@ package com.ulxsth.eftmainsystem.commands;
 
 import com.ulxsth.eftmainsystem.EftMainSystem;
 import com.ulxsth.eftmainsystem.constants.MoneyConstants;
-import com.ulxsth.eftmainsystem.db.MoneyDao;
-import com.ulxsth.eftmainsystem.db.MoneyDto;
+import com.ulxsth.eftmainsystem.db.dao.MoneyDao;
+import com.ulxsth.eftmainsystem.db.dto.MoneyDto;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;

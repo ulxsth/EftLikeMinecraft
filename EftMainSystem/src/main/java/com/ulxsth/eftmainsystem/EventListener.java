@@ -1,9 +1,9 @@
 package com.ulxsth.eftmainsystem;
 
-import com.ulxsth.eftmainsystem.db.MoneyDao;
-import com.ulxsth.eftmainsystem.db.MoneyDto;
-import com.ulxsth.eftmainsystem.db.PlayerDao;
-import com.ulxsth.eftmainsystem.db.PlayerDto;
+import com.ulxsth.eftmainsystem.db.dao.MoneyDao;
+import com.ulxsth.eftmainsystem.db.dto.MoneyDto;
+import com.ulxsth.eftmainsystem.db.dao.PlayerDao;
+import com.ulxsth.eftmainsystem.db.dto.PlayerDto;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
